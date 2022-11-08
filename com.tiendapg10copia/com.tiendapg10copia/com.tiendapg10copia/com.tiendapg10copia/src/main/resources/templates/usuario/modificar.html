@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8"/>        
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"/>
+        <h2>Información de Usuario</h2>
+       <!-- Create and Update (CRUD) -->
+        <a th:href="@{/usuario/listado}">Regresar</a>
+        <hr/>
+        <form th:action="@{/usuario/guardar}"
+              method="post"
+              th:object="${usuario}">
+            
+            <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+            <fieldset>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" th:field="*{nombre}"/>
+            </fieldset>
+            
+            <fieldset>
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" th:field="*{apellidos}"/>
+            </fieldset>
+            
+            <fieldset>
+                <label for="correo">Correo</label>
+                <input type="email" name="correo" th:field="*{correo}"/>
+            </fieldset>
+            
+            <fieldset>
+                <label for="telefono">Teléfono</label>
+                <input type="tel" name="telefono" th:field="*{telefono}"/>
+            </fieldset>
+            
+            <fieldset>
+                <label for="pais">País</label>
+                <input type="text" name="pais" th:field="*{pais}"/>
+            </fieldset>
+            
+            <fieldset>
+                <label for="fecha_de_nacimiento">Fecha de Nacimiento</label>
+                <input type="text" name="fecha_de_nacimiento" th:field="*{fecha_de_nacimiento}"/>
+            </fieldset>
+            
+            <hr/>
+            <input type="submit" value="Guardar" name="guardar"/>            
+        </form>        
+        <footer th:replace="layout/plantilla :: footer"/>
+    </body>
+</html>
