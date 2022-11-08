@@ -1,0 +1,34 @@
+CREATE SCHEMA proyecto;
+
+create user 'admin'@'%' identified by 'admin';
+
+grant all privileges on proyecto.* to 'admin'@'%';
+flush privileges;
+
+
+
+CREATE TABLE proyecto.temporada(
+ id_temporada INT NOT NULL AUTO_INCREMENT,
+ nombre_producto VARCHAR(30) NOT NULL,
+ PRIMARY KEY (`id_temporada `)
+ )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_eo_0900_ai_ci;
+
+
+CREATE TABLE proyecto.producto(
+ codigo_producto INT NOT NULL AUTO_INCREMENT,
+ id_temporada INT NOT NULL AUTO_INCREMENT,
+ nombre_producto VARCHAR(30) NOT NULL,
+ marca_producto VARCHAR(30) NOT NULL,
+ color_producto VARCHAR(30) NOT NULL,
+ cantidad_producto INT NOT NULL,
+precio_producto INT NOT NULL,
+ PRIMARY KEY (`codigo_producto`),
+ foreign key fk_id_temporada (id_temporada) references temporada(id_temporada) 
+ )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_eo_0900_ai_ci;
+
