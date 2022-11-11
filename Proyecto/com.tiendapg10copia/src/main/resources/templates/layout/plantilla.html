@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml"> 
+    <head> 
+        <title>Humorous</title> 
+        <meta charset="UTF-8"/>         
+    </head> 
+    <body> 
+        <header th:fragment="header" class="header"> 
+            <nav class="nav"> 
+                <a th:href="@{/}" class="logo nav-link">Humorous</a> 
+                <ul class="nav-menu"> 
+                
+                     <li class="nav-menu-item"> 
+                        <a>Hombres</a> 
+                    </li> 
+                    
+                    <li class="nav-menu-item"> 
+                        <a>Mujeres</a> 
+                    </li> 
+                    
+                    <li class="nav-menu-item"> 
+                        <a>Infantil</a> 
+                    </li> 
+                    
+                    <li class="nav-menu-item"> 
+                        <a th:href="@{/usuario/listado}" class="nav-menu-link nav-link">Usuarios</a> 
+                    </li> 
+                    
+                    <li class="nav-menu-item"> 
+                        <a th:href="@{/producto/listado}" class="nav-menu-link nav-link">Productos</a> 
+                    </li> 
+                    
+                    <li class="nav-menu-item"> 
+                        <a>Iniciar Sesión</a>
+                    </li> 
+                    
+                    <li class="nav-menu-item"> 
+                        <a>Registrarse</a> 
+                    </li> 
+                    
+                    
+                </ul> 
+            </nav>           
+        </header> 
+        <div th:fragment="div" class="div">
+            
+            <p> &COPY;2022 Humorous         Acerca de nosotros      Contacto 2200 8800      info@humorous.com </p>
+            
+        </div>
+        <footer th:fragment="footer" class="footer"> 
+            <p>&COPY; Derechos Reservados 2022</p> 
+        </footer> 
+    </body> 
+</html> 

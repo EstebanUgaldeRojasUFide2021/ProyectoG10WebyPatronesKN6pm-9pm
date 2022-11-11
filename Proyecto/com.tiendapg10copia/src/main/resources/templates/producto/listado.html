@@ -1,0 +1,54 @@
+<!-- Listado de Productos -->
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"> 
+    <head> 
+        <title>Humorous</title> 
+        <meta charset="UTF-8"/> 
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>         
+    </head> 
+
+    <body> 
+        <header th:replace="layout/plantilla :: header"/> 
+        <h2>Información de productos</h2> 
+        <a th:href="@{/producto/nuevo}">Nuevo Producto</a> 
+        <div th:if="${productos !=null and !productos.empty}"> 
+            <table border="1"> 
+                <tr> 
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Cantidad</th> 
+                    <th>Precio</th> 
+                    <th>Activo</th> 
+                    <th>Eliminar</th> 
+                    <th>Modificar</th> 
+                </tr> 
+
+                <tr th:each="producto : ${productos}"> 
+                    <td>[[${producto.nombre_producto}]]</td> 
+                    <td>[[${producto.descripcion}]]</td>
+                    <td>[[${producto.marca_producto}]]</td>
+                    <td>[[${producto.color_producto}]]</td>
+                    <td style="text-align: center">[[${producto.cantidad_producto}]]</td> 
+                    <td style="text-align: right">[[${producto.precio_producto}]]</td> 
+                    <td style="text-align: center">
+                        <input type="checkbox" name="activo" th:checked=${producto.activo} disabled="true"/></td>
+                     <!-- Delete (CRUD) -->
+                    <td><a th:href="@{/producto/eliminar/}+${producto.CodigoProducto}">Eliminar</td> 
+                     <!-- Update (CRUD) -->
+                    <td><a th:href="@{/producto/modificar/}+${producto.CodigoProducto}">Modificar</td> 
+                </tr>             
+            </table> 
+        </div> 
+        
+        <div th:if="${productos ==null or productos.empty}"> 
+            <h2>No hay productos que mostrar</h2> 
+        </div>
+      
+        <footer th:replace="layout/plantilla :: footer"/> 
+    </body>
+</html> 
+
+ 

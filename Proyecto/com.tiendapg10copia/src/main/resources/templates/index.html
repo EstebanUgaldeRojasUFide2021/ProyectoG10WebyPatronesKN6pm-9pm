@@ -1,0 +1,85 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml"> 
+    <head> 
+        <title>Humorous</title> 
+        <meta charset="UTF-8"/>        
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/> 
+    </head> 
+    <body> 
+        <header th:replace="layout/plantilla :: header"/> 
+
+        <div class="contenido">
+            <img src="/images/clothing_shop_jeans_fashion_pants-903621.jpg" alt="Humourous" width="1903" height="480">
+                <section>
+                    <article>
+                        <header>
+                            <h2>Productos Destacados</h2> 
+                        </header>
+                        <figure>
+                            <img src="/images/destacado1.jpg" height="288" width="288"/>
+                            <img src="/images/destacado2.jpg" height="288" width="288"/>
+                            <img src="/images/destacado3.jpg" height="288" width="288"/>
+                            <img src="/images/destacado4.jpg" height="288" width="288"/>
+                            <img src="/images/destacado5.jpg" height="288" width="288"/>
+                        </figure>
+                    </article>
+
+                    <article>
+                        <header>
+                            <h2>Calzado</h2> 
+                        </header>
+                        <figure>
+                            <img src="/images/zapatos5.jpg" height="288" width="288"/>
+                            <img src="/images/zapatos3.jpeg" height="288" width="288"/>
+                            <img src="/images/zapatos4.jpeg" height="288" width="288"/>
+                            <img src="/images/zapatos2.jpg" height="288" width="288"/>
+                            <img src="/images/zapatos1.jpg" height="288" width="288"/>
+                        </figure>
+                    </article>      
+
+                    <article>
+                        <header>
+                            <h2>Ropa Deportiva</h2> 
+                        </header>
+                        <figure>
+                            <img src="/images/deportivo1.jpg" height="288" width="288"/>
+                            <img src="/images/deportivo2.jpg" height="288" width="288"/>
+                            <img src="/images/deportivo3.jpg" height="288" width="288"/>
+                            <img src="/images/deportivo4.jpg" height="288" width="288"/>
+                            <img src="/images/deportivo5.jpg" height="288" width="288"/>
+                        </figure>
+                    </article>
+                </section>
+                
+                <div th:if="${productos !=null and !productos.empty}"> 
+                    <h2>Productos Recientes</h2>
+                    <table border="1"> 
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Marca</th>
+                            <th>Color</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>  
+                        </tr> 
+                        <tr th:each="producto : ${productos}"> 
+                            <td>[[${producto.nombre_producto}]]</td>  
+                            <td>[[${producto.descripcion}]]</td> 
+                            <td>[[${producto.marca_producto}]]</td> 
+                            <td>[[${producto.color_producto}]]</td> 
+                            <td>[[${producto.cantidad_producto}]]</td> 
+                            <td style="text-align: right">[[${producto.precio_producto}]]</td>  
+                        </tr>             
+                    </table> 
+                </div> 
+
+                <div th:if="${productos ==null or productos.empty}"> 
+                    <h2>No hay productos que mostrar</h2> 
+                </div> 
+                <div th:replace="layout/plantilla :: div"/> 
+        </div> 
+        <footer th:replace="layout/plantilla :: footer"/> 
+    </body> 
+</html> 
+
