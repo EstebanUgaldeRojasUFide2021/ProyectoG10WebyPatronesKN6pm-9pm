@@ -1,55 +1,101 @@
 <!DOCTYPE html> 
-<html xmlns:th="http://www.thymeleaf.org" 
-      xmlns="http://www.w3.org/1999/xhtml"> 
-    <head> 
-        <title>Humorous</title> 
-        <meta charset="UTF-8"/>         
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"      
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:fragment="head">
+        <title>Humorous</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </head> 
-    <body> 
-        <header th:fragment="header" class="header"> 
-            <nav class="nav"> 
-                <a th:href="@{/}" class="logo nav-link">Humorous</a> 
-                <ul class="nav-menu"> 
-                
-                     <li class="nav-menu-item"> 
-                        <a>Hombres</a> 
-                    </li> 
-                    
-                    <li class="nav-menu-item"> 
-                        <a>Mujeres</a> 
-                    </li> 
-                    
-                    <li class="nav-menu-item"> 
-                        <a>Infantil</a> 
-                    </li> 
-                    
-                    <li class="nav-menu-item"> 
-                        <a th:href="@{/usuario/listado}" class="nav-menu-link nav-link">Usuarios</a> 
-                    </li> 
-                    
-                    <li class="nav-menu-item"> 
-                        <a th:href="@{/producto/listado}" class="nav-menu-link nav-link">Productos</a> 
-                    </li> 
-                    
-                    <li class="nav-menu-item"> 
-                        <a>Iniciar Sesión</a>
-                    </li> 
-                    
-                    <li class="nav-menu-item"> 
-                        <a>Registrarse</a> 
-                    </li> 
-                    
-                    
-                </ul> 
-            </nav>           
-        </header> 
-        <div th:fragment="div" class="div">
-            
-            <p> &COPY;2022 Humorous         Acerca de nosotros      Contacto 2200 8800      info@humorous.com </p>
-            
-        </div>
-        <footer th:fragment="footer" class="footer"> 
-            <p>&COPY; Derechos Reservados 2022</p> 
-        </footer> 
-    </body> 
-</html> 
+    <body>  
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                <div class="container">
+                    <a th:href="@{/}" class="navbar-brand">Humorous</a>
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR')">
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/usuario/listado}"
+                                   th:text="#{plantilla.clientes}">Usuario</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/temporada/listado}"
+                                   th:text="#{plantilla.categorias}">Temporadas</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/producto/listado}"
+                                   th:text="#{plantilla.articulos}">Productos</a>
+                            </li>
+                            <li class="nav-item px-2"  sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a class="nav-menu-link nav-link" th:href="@{/usuario/listado}"
+                                   th:text="#{plantilla.usuarios}">Usuarios</a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/hombres/listado}"
+                                   th:text="#{plantilla.categorias}">Hombres</a>
+                            </li>
+
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/mujeres/listado}"
+                                   th:text="#{plantilla.categorias}">Mujeres</a>
+                            </li> 
+
+                            <li class="nav-item px-2">
+                                <a class="nav-menu-link nav-link" th:href="@{/infantil/listado}"
+                                   th:text="#{plantilla.categorias}">Infantil</a>
+                            </li>
+                        </ul>
+                        <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                            <li class="nav-item mr-3">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-user"></i>
+                                    <span th:text="#{plantilla.bienvenido}">Bievenido:</span>
+                                    <span sec:authentication="name">Usuario</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="POST" th:action="@{/logout}">
+                                    <a href="#" onclick="this.parentNode.submit();" class="nav-link">
+                                        <i class="fas fa-user-times"></i> [[#{plantilla.logout}]]
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>                    
+                </div>
+            </nav>
+            <section id="main-header" class="py-2 bg-success text-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>
+                                <i class="fas fa-cog"></i> [[#{plantilla.titulo}]]
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </header>
+
+        <footer th:fragment="footer" class="bg-info text-white mt-5 p-2">
+            <div class="container">
+                <div class="col">
+                    <p class="lead text-center">&COPY; [[#{plantilla.derechos}]] <p> &COPY;2022 Humorous         Acerca de nosotros      Contacto 2200 8800      info@humorous.com </p> | 
+                        <a th:href="@{/(lang=es)}">ES</a> | 
+                        <a th:href="@{/(lang=en)}">EN</a>
+                    </p><ul class="navbar-nav ml-auto">
+
+                    </ul>  
+                    <!-- Esto es un comentario....   [[plantilla.tusuario]]: <span sec:authentication="name">xx</span> | [[plantilla.troles]]: <span sec:authentication="principal.authorities">s</span> |--> 
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

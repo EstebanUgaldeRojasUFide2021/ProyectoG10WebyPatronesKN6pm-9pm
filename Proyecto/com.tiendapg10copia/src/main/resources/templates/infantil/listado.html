@@ -1,0 +1,53 @@
+<!-- Listado de Infantiles -->
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Humorous</title>
+    </head>
+
+    <body> 
+        <header th:replace="layout/plantilla :: header"/> 
+        <h2>Información de infantiles</h2> 
+        <a th:href="@{/infantil/nuevo}">Nuevo Infantil</a> 
+        <div th:if="${infantiles !=null and !infantiles.empty}"> 
+            <table border="1"> 
+                <tr> 
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Cantidad</th> 
+                    <th>Precio</th> 
+                    <th>Activo</th> 
+                    <th>Eliminar</th> 
+                    <th>Modificar</th> 
+                </tr> 
+
+                <tr th:each="infantil : ${infantiles}"> 
+                    <td>[[${infantil.nombre_infantil}]]</td> 
+                    <td>[[${infantil.descripcion}]]</td>
+                    <td>[[${infantil.marca_infantil}]]</td>
+                    <td>[[${infantil.color_infantil}]]</td>
+                    <td style="text-align: center">[[${infantil.cantidad_infantil}]]</td> 
+                    <td style="text-align: right">[[${infantil.precio_infantil}]]</td> 
+                    <td style="text-align: center">
+                        <input type="checkbox" name="activo" th:checked=${infantil.activo} disabled="true"/></td>
+                     <!-- Delete (CRUD) -->
+                    <td><a th:href="@{/infantil/eliminar/}+${infantil.CodigoInfantil}">Eliminar</td> 
+                     <!-- Update (CRUD) -->
+                    <td><a th:href="@{/infantil/modificar/}+${infantil.CodigoInfantil}">Modificar</td> 
+                </tr>             
+            </table> 
+        </div> 
+        
+        <div th:if="${infantiles ==null or infantiles.empty}"> 
+            <h2>No hay infantiles que mostrar</h2> 
+        </div>
+      
+        <footer th:replace="layout/plantilla :: footer"/> 
+    </body>
+</html> 
+
+ 

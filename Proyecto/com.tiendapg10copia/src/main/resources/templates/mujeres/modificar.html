@@ -1,4 +1,4 @@
-<!-- Modificación de Productos -->
+<!-- Modificación de Mujers -->
 <!DOCTYPE html> 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://wwww.thymeleaf.org" 
@@ -9,16 +9,16 @@
     <body> 
         <header th:replace="layout/plantilla :: header"/> 
         <div class="contenido"> 
-            <h2>Información de Producto</h2> 
-            <a th:href="@{/producto/listado/}">Regresar</a> 
+            <h2>Información de Mujer</h2> 
+            <a th:href="@{/mujer/listado/}">Regresar</a> 
             <hr/> 
-            <form th:action="@{/producto/guardar}" 
+            <form th:action="@{/mujer/guardar}" 
                   method="post" 
-                  th:object="${producto}"> 
-                <input type="hidden" name="CodigoProducto" th:field="*{CodigoProducto}"/>   
+                  th:object="${mujer}"> 
+                <input type="hidden" name="CodigoMujer" th:field="*{CodigoMujer}"/>   
                    <fieldset> 
-                        <label for="nombre_producto">Nombre</label> 
-                        <textarea name="nombre_producto" th:field="*{nombre_producto}" rows="6" cols="50"/> 
+                        <label for="nombre_mujer">Nombre</label> 
+                        <textarea name="nombre_mujer" th:field="*{nombre_mujer}" rows="6" cols="50"/> 
                     </fieldset>  
                 
                     <fieldset> 
@@ -27,23 +27,23 @@
                     </fieldset>
                 
                     <fieldset> 
-                        <label for="marca_producto">Marca</label> 
-                        <textarea name="marca_producto" th:field="*{marca_producto}" rows="6" cols="50"/> 
+                        <label for="marca_mujer">Marca</label> 
+                        <textarea name="marca_mujer" th:field="*{marca_mujer}" rows="6" cols="50"/> 
                     </fieldset>
                 
                     <fieldset> 
-                        <label for="color_producto">Color</label> 
-                        <textarea name="color_producto" th:field="*{color_producto}" rows="6" cols="50"/> 
+                        <label for="color_mujer">Color</label> 
+                        <textarea name="color_mujer" th:field="*{color_mujer}" rows="6" cols="50"/> 
                     </fieldset>
                     
                     <fieldset> 
-                        <label for="cantidad_producto">Cantidad</label> 
-                        <input type="number" name="cantidad_producto" th:field="*{cantidad_producto}"/> 
+                        <label for="cantidad_mujer">Cantidad</label> 
+                        <input type="number" name="cantidad_mujer" th:field="*{cantidad_mujer}"/> 
                     </fieldset> 
                     
                     <fieldset> 
-                        <label for="precio_producto">Precio</label> 
-                        <input type="number" name="precio_producto" th:field="*{precio_producto}"/> 
+                        <label for="precio_mujer">Precio</label> 
+                        <input type="number" name="precio_mujer" th:field="*{precio_mujer}"/> 
                     </fieldset> 
                 
                     <fieldset> 

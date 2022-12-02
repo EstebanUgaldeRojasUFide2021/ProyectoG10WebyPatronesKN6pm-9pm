@@ -1,0 +1,53 @@
+<!-- Listado de Hombres -->
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Humorous</title>
+    </head>
+
+    <body> 
+        <header th:replace="layout/plantilla :: header"/> 
+        <h2>Información de hombres</h2> 
+        <a th:href="@{/hombre/nuevo}">Nuevo Hombre</a> 
+        <div th:if="${hombres !=null and !hombres.empty}"> 
+            <table border="1"> 
+                <tr> 
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Cantidad</th> 
+                    <th>Precio</th> 
+                    <th>Activo</th> 
+                    <th>Eliminar</th> 
+                    <th>Modificar</th> 
+                </tr> 
+
+                <tr th:each="hombre : ${hombres}"> 
+                    <td>[[${hombre.nombre_hombre}]]</td> 
+                    <td>[[${hombre.descripcion}]]</td>
+                    <td>[[${hombre.marca_hombre}]]</td>
+                    <td>[[${hombre.color_hombre}]]</td>
+                    <td style="text-align: center">[[${hombre.cantidad_hombre}]]</td> 
+                    <td style="text-align: right">[[${hombre.precio_hombre}]]</td> 
+                    <td style="text-align: center">
+                        <input type="checkbox" name="activo" th:checked=${hombre.activo} disabled="true"/></td>
+                     <!-- Delete (CRUD) -->
+                    <td><a th:href="@{/hombre/eliminar/}+${hombre.CodigoHombre}">Eliminar</td> 
+                     <!-- Update (CRUD) -->
+                    <td><a th:href="@{/hombre/modificar/}+${hombre.CodigoHombre}">Modificar</td> 
+                </tr>             
+            </table> 
+        </div> 
+        
+        <div th:if="${hombres ==null or hombres.empty}"> 
+            <h2>No hay hombres que mostrar</h2> 
+        </div>
+      
+        <footer th:replace="layout/plantilla :: footer"/> 
+    </body>
+</html> 
+
+ 
