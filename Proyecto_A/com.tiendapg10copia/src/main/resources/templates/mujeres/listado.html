@@ -1,0 +1,53 @@
+<!-- Listado de Mujeres -->
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Humorous</title>
+    </head>
+
+    <body> 
+        <header th:replace="layout/plantilla :: header"/> 
+        <h2>Información de mujeres</h2> 
+        <a th:href="@{/mujer/nuevo}">Nuevo Mujeres</a> 
+        <div th:if="${mujeres !=null and !mujeres.empty}"> 
+            <table border="1"> 
+                <tr> 
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Cantidad</th> 
+                    <th>Precio</th> 
+                    <th>Activo</th> 
+                    <th>Eliminar</th> 
+                    <th>Modificar</th> 
+                </tr> 
+
+                <tr th:each="mujer : ${mujeres}"> 
+                    <td>[[${mujer.nombre_mujer}]]</td> 
+                    <td>[[${mujer.descripcion}]]</td>
+                    <td>[[${mujer.marca_mujer}]]</td>
+                    <td>[[${mujer.color_mujer}]]</td>
+                    <td style="text-align: center">[[${mujer.cantidad_mujer}]]</td> 
+                    <td style="text-align: right">[[${mujer.precio_mujer}]]</td> 
+                    <td style="text-align: center">
+                        <input type="checkbox" name="activo" th:checked=${mujer.activo} disabled="true"/></td>
+                     <!-- Delete (CRUD) -->
+                    <td><a th:href="@{/mujer/eliminar/}+${mujer.CodigoMujer}">Eliminar</td> 
+                     <!-- Update (CRUD) -->
+                    <td><a th:href="@{/mujer/modificar/}+${mujer.CodigoMujer}">Modificar</td> 
+                </tr>             
+            </table> 
+        </div> 
+        
+        <div th:if="${mujeres ==null or mujeres.empty}"> 
+            <h2>No hay mujeres que mostrar</h2> 
+        </div>
+      
+        <footer th:replace="layout/plantilla :: footer"/> 
+    </body>
+</html> 
+
+ 

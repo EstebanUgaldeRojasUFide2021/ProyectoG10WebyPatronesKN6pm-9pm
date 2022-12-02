@@ -1,0 +1,47 @@
+<!-- Listado de Usuarios -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Humorous</title>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"/>
+        <h2>Información de usuarios</h2>
+       <!-- Create and Update (CRUD) -->
+        <a th:href="@{/usuario/nuevo}">Nuevo Usuario</a>
+        <div th:if="${usuarios !=null and !usuarios.empty}">
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>País</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Eliminar</th>
+                    <th>Modificar</th>
+                </tr>
+                <tr th:each="usuario : ${usuarios}">
+                    <td>[[${usuario.nombre}]]</td>
+                    <td>[[${usuario.apellidos}]]</td>
+                    <td>[[${usuario.correo}]]</td>
+                    <td>[[${usuario.telefono}]]</td>
+                    <td>[[${usuario.pais}]]</td>
+                    <td>[[${usuario.fecha_de_nacimiento}]]</td>
+                   <!-- Delete (CRUD) -->
+                    <td><a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}">Eliminar</td>
+                   <!-- Update (CRUD) -->
+                    <td><a th:href="@{/usuario/modificar/}+${usuario.idUsuario}">Modificar</td>
+                </tr>            
+            </table>
+        </div>
+        
+        <div th:if="${usuarios ==null or usuarios.empty}">
+            <h2>No hay usuarios que mostrar</h2> 
+        </div>
+     
+        <footer th:replace="layout/plantilla :: footer"/>
+    </body>
+</html>
