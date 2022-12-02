@@ -1,0 +1,60 @@
+<!-- Modificación de Mujers -->
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Humorous</title>
+    </head>
+    <body> 
+        <header th:replace="layout/plantilla :: header"/> 
+        <div class="contenido"> 
+            <h2>Información de Mujer</h2> 
+            <a th:href="@{/mujer/listado/}">Regresar</a> 
+            <hr/> 
+            <form th:action="@{/mujer/guardar}" 
+                  method="post" 
+                  th:object="${mujer}"> 
+                <input type="hidden" name="CodigoMujer" th:field="*{CodigoMujer}"/>   
+                   <fieldset> 
+                        <label for="nombre_mujer">Nombre</label> 
+                        <textarea name="nombre_mujer" th:field="*{nombre_mujer}" rows="6" cols="50"/> 
+                    </fieldset>  
+                
+                    <fieldset> 
+                    <label for="descripcion">Descripción</label> 
+                    <input type="text" name="descripcion" th:field="*{descripcion}"/> 
+                    </fieldset>
+                
+                    <fieldset> 
+                        <label for="marca_mujer">Marca</label> 
+                        <textarea name="marca_mujer" th:field="*{marca_mujer}" rows="6" cols="50"/> 
+                    </fieldset>
+                
+                    <fieldset> 
+                        <label for="color_mujer">Color</label> 
+                        <textarea name="color_mujer" th:field="*{color_mujer}" rows="6" cols="50"/> 
+                    </fieldset>
+                    
+                    <fieldset> 
+                        <label for="cantidad_mujer">Cantidad</label> 
+                        <input type="number" name="cantidad_mujer" th:field="*{cantidad_mujer}"/> 
+                    </fieldset> 
+                    
+                    <fieldset> 
+                        <label for="precio_mujer">Precio</label> 
+                        <input type="number" name="precio_mujer" th:field="*{precio_mujer}"/> 
+                    </fieldset> 
+                
+                    <fieldset> 
+                        <label for="activo">Activo</label> 
+                        <input type="checkbox" name="activo" th:field="*{activo}"/> 
+                    </fieldset> 
+                    <hr/> 
+                    <input type="submit" value="Guardar" name="guardar"/>             
+            </form>            
+        </div> 
+      
+        <footer th:replace="layout/plantilla :: footer"/> 
+    </body> 
+</html> 

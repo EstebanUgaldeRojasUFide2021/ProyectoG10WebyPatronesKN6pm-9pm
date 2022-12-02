@@ -1,0 +1,40 @@
+<!-- Listado de Temporadas -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>Humorous</title>
+    </head>
+    
+    <body> 
+        <header th:replace="layout/plantilla :: header"/> 
+        <h2>Información de temporadas</h2> 
+        <a th:href="@{/temporada/nuevo}">Nueva Temporada</a> 
+        <div th:if="${temporadas !=null and !temporadas.empty}"> 
+            <table border="1"> 
+                <tr> 
+                    <th>Nombre</th> 
+                    <th>Activa</th> 
+                    <th>Eliminar</th> 
+                    <th>Modificar</th> 
+                </tr> 
+
+                <tr th:each="temporada : ${temporadas}"> 
+                    <td>[[${temporada.nombre_temporada}]]</td> 
+                    <td style="text-align: center"> 
+                        <input  type="checkbox" name="activo" th:checked="${temporada.activo}" disabled="true"/></td>  
+                    <!-- Delete (CRUD) -->
+                    <td><a th:href="@{/temporada/eliminar/+${temporada.IdTemporada}">Eliminar</td>
+                    <!-- Update (CRUD) -->
+                    <td><a th:href="@{/temporada/modificar/}+${temporada.IdTemporada}">Modificar</td> 
+                </tr>             
+            </table> 
+        </div> 
+        <div th:if="${temporadas ==null or temporadas.empty}"> 
+            <h2>No hay temporadas que mostrar</h2> 
+        </div>
+        
+        <footer th:replace="layout/plantilla :: footer"/> 
+    </body> 
+</html> 
